@@ -1,0 +1,95 @@
+<div class="navbar navbar-inverse">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Prototype</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Chat App</a></li>
+      <li><a href="http://github.com/charliemitchell/">My Github</a></li>
+    </ul>
+    
+    
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <form class="navbar-form navbar-left">
+          {{input value=filterQuery class="form-control" placeholder="Live Filter Transcript"}}
+        </form>
+      </li>
+      <li class="hasAction">
+        <a {{action 'clearFilterQuery'}}>Clear</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{{#unless usernameIsSet}}
+    <div class="jumbotron">
+      <div class="well">
+        <h1>Chat-App</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae dapibus odio, lacinia dignissim arcu.</p>
+        <p>
+          <div class="row">
+            <div class="col-sm-12">
+              <h4>Choose Your Screen Name To Get Started!</h4>
+
+              <form class="form-horizontal">
+                <fieldset>
+                  <div class="form-group" id="screenNameGroup">
+                    <label for="screenName" class="col-lg-2 control-label">Screen Name</label>
+                    <div class="col-lg-10">
+                      {{input value=username class="form-control" id="screenName" placeholder="Screen Name"}}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <button type="submit" class="btn btn-primary" {{action "setusername"}}>Chat</button>
+                    </div>
+                  </div>
+                  
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+{{/unless}}
+
+{{#if usernameIsSet}}
+    <div class="col-sm-12 well">
+      <h4>People in here</h4>
+      {{userlist}}
+    </div>
+
+    <hr/>
+    <section id="chat">
+      <ul class="chat-thread">
+          {{#each transcript}}
+            <li {{bind-attr class="self:mine:theirs"}}>
+              <div class="sender">{{nickname}}</div>
+              <div class="chat-date">{{format-date time}}</div>
+              {{message}}
+            </li>
+          {{/each}}
+      </ul>
+
+      <form class="chat-window">
+        <div class="row">
+          <div class="col-sm-12 col-md-10">
+            {{input class="chat-window-message"  autocomplete="off" autofocus="true" placeholder="Type your message" value=chat}}
+          </div>
+          <br class="visible-sm-*"/>
+          <div class="col-sm-12 col-md-2 text-left">
+            <button class="btn btn-success" {{action 'sendChat'}}>Send</button>
+          </div>
+          </div>
+      </form>
+      </section>
+{{/if}}

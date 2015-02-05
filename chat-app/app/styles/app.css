@@ -1,0 +1,227 @@
+/* Try and style the scroll bar if the browser supports it */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(0,0,0, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+
+/* Chat Transcript Wrapper */
+#chat {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* give the action helper a cursor pointer when needed*/
+.hasAction {
+  cursor:pointer;
+}
+.hasAction:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+/* the chat thread ul */
+.chat-thread {
+  margin: 24px auto 0 auto;
+  padding: 10px 20px;
+  list-style: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* @each chat */
+.chat-thread li {
+  position: relative;
+  clear: both;
+  display: inline-block;
+  padding: 16px 40px 16px 20px;
+  margin: 0 0 20px 0;
+  font: 16px/20px;
+  border-radius: 10px;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+/* the user's chat should be easier to distinguish */
+.chat-thread li.mine {
+  background-color: rgba(12, 132, 228, 0.21);
+}
+
+
+/*.chat-thread li:before {
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  content: '';
+}*/
+
+/* Any Speech Bubble Arrow */
+.chat-thread li:after {
+  position: absolute;
+  top: 15px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 15px solid rgba(0,0,0, 0.2);
+}
+
+/* The Senders Speech Bubble*/
+.chat-thread li.mine {
+  animation: animate-my-chat 0.15s 1 ease-in;
+  -moz-animation: animate-my-chat 0.15s 1 ease-in;
+  -webkit-animation: animate-my-chat 0.15s 1 ease-in;
+  float: right;
+  margin-right: 80px;
+}
+
+/* Who sent the message  @nickname*/
+.chat-thread li .sender {
+  line-height: 1;
+  color: #2196f3;
+  position: absolute;
+  font-size: 16px;
+  width: 50px;
+  margin-top: -8px;
+}
+
+/* The Senders Nickname */
+.chat-thread li.mine .sender {
+  right: -80px;
+}
+
+/* The Senders Speech Bubble Arrow */
+.chat-thread li.mine:after {
+  border-top: 15px solid rgba(12, 132, 228, 0.21);
+  border-right: 15px solid transparent;
+  right: -15px;
+}
+
+/* The Receiving Speech Bubble*/
+.chat-thread li.theirs {
+  animation: animate-their-chat 0.15s 1 ease-in;
+  -moz-animation: animate-their-chat 0.15s 1 ease-in;
+  -webkit-animation: animate-their-chat 0.15s 1 ease-in;
+  float: left;
+  margin-left: 80px;
+}
+
+/* The Receiving Nickname */
+.chat-thread li.theirs .sender {
+  left: -80px;
+}
+
+/* The Receiving Speech Bubble Arrow */
+.chat-thread li.theirs:after {
+  border-left: 15px solid transparent;
+  left: -15px;
+}
+
+/* Wrapper for the chat input and send button  */
+.chat-window {
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+}
+
+/* The Chat input */
+.chat-window-message {
+  width: 100%;
+  height: 48px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0, 0.2);
+  outline: none;
+}
+
+/* The Chat Date (in the speech bubble)*/
+.chat-date {
+  font-size:9px;
+}
+
+/* Small screens */
+@media all and (max-width: 767px) {
+
+  .chat-thread {
+    width: 90%;
+    height:400px;
+  }
+
+  .chat-window {
+    left: 5%;
+    width: 100%;
+    padding: 18px;
+  }
+}
+
+/* Medium and large screens */
+@media all and (min-width: 768px) {
+  .chat-thread {
+    height: 500px;
+    width: 100%;
+  }
+
+  .chat-window {
+    padding: 0 20%;
+  }
+
+}
+
+/* Chat Receiving and Sending Animations */
+@keyframes animate-their-chat {
+  0% {
+    margin-left: -480px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+@-moz-keyframes animate-their-chat {
+  0% {
+    margin-left: -480px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+@-webkit-keyframes animate-their-chat {
+  0% {
+    margin-left: -480px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+@keyframes animate-my-chat {
+  0% {
+    margin-right: -480px;
+  }
+  100% {
+    margin-right: 0;
+  }
+}
+@-moz-keyframes animate-my-chat {
+  0% {
+    margin-right: -480px;
+  }
+  100% {
+    margin-right: 0;
+  }
+}
+@-webkit-keyframes animate-my-chat {
+  0% {
+    margin-right: -480px;
+  }
+  100% {
+    margin-right: 0;
+  }
+}
+
